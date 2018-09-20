@@ -4,7 +4,9 @@
         nick: 'MurdockDev',
         password: 'Papasconqueso',
         jwt: '',
-        
+        /*
+         * https://alligator.io/vuejs/vue-jwt-patterns/
+        */
     },
     methods: {
         Auth(nick, password) {
@@ -19,7 +21,7 @@
                 window.location.href = "cellphones.html";
                 
             }).catch(e => {
-                alert(e)
+                alert("Error: Incorrect username or password")
             })
         }
     },

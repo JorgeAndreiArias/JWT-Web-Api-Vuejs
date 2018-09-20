@@ -13,7 +13,10 @@
         id: '',       
     },
     methods: {
-        
+        Logout() {
+            localStorage.jwt = '';
+            window.location.href = "login.html";
+        },
         GetById(id) {
             auth = {
                 headers: { Authorization: 'Bearer ' + localStorage.jwt }
