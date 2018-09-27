@@ -95,12 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="cellphones.html" />
+    <Content Include="Css\modal.css" />
     <Content Include="Global.asax" />
     <Content Include="login.html" />
     <Content Include="Scripts\axios.min.js" />
     <Content Include="Scripts\cellphones.js" />
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\vue.js" />
+    <Content Include="Scripts\vuex.js" />
     <Content Include="styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
