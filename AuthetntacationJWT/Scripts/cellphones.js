@@ -35,6 +35,7 @@ var vm = new Vue({
         contador: 5,
         showModal: false,
         t: '',
+        auth: { "headers": { "Authorization": 'Bearer ' + localStorage.jwt }}
     },
     computed: {
         changes: {
@@ -59,6 +60,14 @@ var vm = new Vue({
             },
             set: function (v) {
                 this.t = v;
+            }
+        },
+        head: {
+            get: function () {
+                return this.auth;
+            },
+            set: function (v) {
+                this.auth = v;
             }
         }
     },
@@ -107,10 +116,7 @@ var vm = new Vue({
             window.location.href = "login.html";
         },
         GetById(id) {
-            auth = {
-                headers: { Authorization: 'Bearer ' + localStorage.jwt }
-            }
-            axios.get('api/cellphone?Id=' + id, auth).then(response => { //aqui utilizo la librería de axios
+            axios.get('api/cellphone?Id=' + id, this.head).then(response => { //aqui utilizo la librería de axios
                 var papas = JSON.stringify(response);
                 alert(papas);
                 this.CellPhone = response.data;
@@ -127,10 +133,8 @@ var vm = new Vue({
                 "Price": price,
                 "Firmware": firmware,
             };
-            auth = {
-                headers: { Authorization: 'Bearer ' + localStorage.jwt }
-            };
-            axios.post('api/put', obj, auth).then(response => { //aqui utilizo la librería de axios
+
+            axios.post('api/put', obj, this.head).then(response => { //aqui utilizo la librería de axios
                 this.leerAPI();
             }).catch(e => {
                 alert(e);
@@ -144,10 +148,8 @@ var vm = new Vue({
                 "Price": price,
                 "Firmware": firmware,
             };
-            auth = {
-                headers: { Authorization: 'Bearer ' + localStorage.jwt }
-            };
-            axios.post('api/post', obj, auth).then(response => { //aqui utilizo la librería de axios
+
+            axios.post('api/post', obj, this.head).then(response => { //aqui utilizo la librería de axios
                 this.leerAPI();
             }).catch(e => {
                 alert(e);
@@ -158,10 +160,8 @@ var vm = new Vue({
             obj = {
                 "Id": id,
             };
-            auth = {
-                headers: { Authorization: 'Bearer ' + localStorage.jwt }
-            };
-            axios.post('api/delete', obj, auth).then(response => { //aqui utilizo la librería de axios
+
+            axios.post('api/delete', obj, this.head).then(response => { //aqui utilizo la librería de axios
                 this.leerAPI();
             }).catch(e => {
                 alert(e);
@@ -169,10 +169,8 @@ var vm = new Vue({
             // Do stuff with res here.
         },
         leerAPI() { //Esta el la logica de mi metodo
-            auth = {
-                headers: { Authorization: 'Bearer ' + localStorage.jwt }
-            };
-            axios.get('api/cellphone', auth).then(response => { //aqui utilizo la librería de axios
+
+            axios.get('api/cellphone', this.head).then(response => { //aqui utilizo la librería de axios
                 this.CellPhone = response.data;
             }).catch(e => {
                 alert(e);
